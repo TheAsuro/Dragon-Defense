@@ -1,0 +1,21 @@
+Game 1: A dragon defending his gold
+
+- Plays in a cave, with a mountain of gold (2D)
+- You are the dragon, trying to kill intruders
+- Different kinds of enemies
+	- Trying to steal and run away
+	- Out to kill you
+
+- Dragon controls
+	- Turn with wasd
+	- Control head direction with mouse
+	- Bite with left click (front attack)
+	- Tail whip with right click (back attack)
+	- Shift to spit fire (aoe, needs charge)
+	- Space to beat your wings (pushes away, drops stolen loot from enemies)
+	
+- Additional stuff (if I have the time for it)
+	- At night, steal the princess for ransom
+	- Upgrade your base/dragon
+	
+Let's go!
