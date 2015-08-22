@@ -5,7 +5,9 @@ namespace WorldObjects
 {
     public enum DamageType
     {
-        Fire
+        Fire,
+        Sword,
+        Bite
     }
 
     public class DamageObject : MonoBehaviour
@@ -15,7 +17,7 @@ namespace WorldObjects
         [SerializeField]
         private DamageType damageType;
 
-        public float DamagePerTick { get { return -damagePerTick; } }
+        public float DamagePerTick { get { return damagePerTick; } }
         public DamageType DamageType { get { return damageType; } }
     }
 }

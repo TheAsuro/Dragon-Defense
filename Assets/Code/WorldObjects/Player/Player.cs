@@ -5,25 +5,17 @@ namespace WorldObjects.Player
 {
     public class Player : Creature
     {
+        private static Player current;
+        public static Player Current { get { return current; } }
+
         void Start()
         {
-            PlayerData.Player = this;
+            current = this;
         }
 
         protected override void Die()
         {
-            print("you ded");
-        }
-    }
-
-    public static class PlayerData
-    {
-        private static Player player;
-
-        public static Player Player
-        {
-            get { return player; }
-            set { player = value; }
+            GameInfo.Status.DeathScreen();
         }
     }
 }

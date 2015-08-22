@@ -7,15 +7,18 @@ Game 1: A dragon defending his gold
 	- Out to kill you
 
 - Dragon controls
-	- Turn with wasd
+	- Move with wasd (always same direction or rotation based?)
 	- Control head direction with mouse
-	- Bite with left click (front attack)
-	- Tail whip with right click (back attack)
+	- Bite with left click (main attack)
+	- Tail whip with right click (knocks enemies over?)
 	- Shift to spit fire (aoe, needs charge)
-	- Space to beat your wings (pushes away, drops stolen loot from enemies)
-	
+	- Space to jump (drops stolen loot from enemies)
+
+- Lose the game if you die or run out of gold
+
 - Additional stuff (if I have the time for it)
+	- Merchant tries to sell you stuff (armor maybe?)
+		- Kill him -> get stuff for free but won't return
+		- Pay him -> will return with better items
 	- At night, steal the princess for ransom
 	- Upgrade your base/dragon
-	
-Let's go!
