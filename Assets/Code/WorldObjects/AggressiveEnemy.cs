@@ -47,7 +47,6 @@ namespace WorldObjects
 
         protected virtual void Attack()
         {
-            print("boom");
             foreach (GameObject creature in Weapon.CollidingCreatures)
             {
                 creature.GetComponent<Creature>().Damage(attackDamage, DamageType.Sword);

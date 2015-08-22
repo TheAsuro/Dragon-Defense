@@ -2,12 +2,13 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class HealthBar : MonoBehaviour
+namespace UI
 {
-    private RectTransform RT { get { return GetComponent<RectTransform>(); } }
-
-    void Update()
+    public class HealthBar : Bar
     {
-        RT.anchorMax = new Vector2(WorldObjects.Player.Player.Current.Health / 100f, RT.anchorMax.y);
+        void Update()
+        {
+            Value = WorldObjects.Player.Player.Current.Health / 100f;
+        }
     }
 }
