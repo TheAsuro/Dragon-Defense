@@ -5,8 +5,10 @@ namespace WorldObjects
 {
     public class FireObject : DamageObject
     {
-        private float creationTime;
+        [SerializeField]
         private float lifeTime = 3f;
+
+        private float creationTime;
 
         void Start()
         {
