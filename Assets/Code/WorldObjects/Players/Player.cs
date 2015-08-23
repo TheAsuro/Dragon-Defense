@@ -61,7 +61,10 @@ namespace WorldObjects.Players
         protected override void Tick()
         {
             base.Tick();
+        }
 
+        void Update()
+        {
             UpdateBite();
             UpdateFire();
         }
