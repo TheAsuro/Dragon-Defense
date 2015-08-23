@@ -2,7 +2,7 @@
 using UnityEditor;
 using System.Collections.Generic;
 
-namespace WorldObjects
+namespace WorldObjects.Enemies
 {
     public class EnemySpawner : MonoBehaviour
     {

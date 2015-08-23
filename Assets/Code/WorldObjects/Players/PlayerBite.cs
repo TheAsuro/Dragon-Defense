@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Utils;
+using WorldObjects.Enemies;
 
-namespace WorldObjects.Player
+namespace WorldObjects.Players
 {
     public class PlayerBite : CollisionList
     {

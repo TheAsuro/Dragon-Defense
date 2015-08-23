@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using WorldObjects.Enemies;
 
-namespace WorldObjects.Player
+namespace WorldObjects.Players
 {
     public class Player : Creature
     {
@@ -35,6 +36,7 @@ namespace WorldObjects.Player
 
         private float biteCooldownStart;
         private bool biteOnCooldown = false;
+        public bool BiteOnCooldown { get { return biteOnCooldown; } }
         private bool biteBuffered = false;
 
         private CreatureSound sound;
@@ -68,27 +70,32 @@ namespace WorldObjects.Player
         {
             if (Input.GetButtonDown("Bite"))
             {
-                if (biteOnCooldown)
+                /*if (biteOnCooldown)
                 {
                     biteBuffered = true;
                 }
                 else
-                {
+                {*/
                     biteOnCooldown = true;
                     biteCooldownStart = Time.time;
                     Bite();
-                }
+                //}
             }
 
             if (Time.time >= biteCooldownStart + biteCooldown)
             {
                 biteOnCooldown = false;
-                if (biteBuffered)
+                /*if (biteBuffered)
                 {
                     biteBuffered = false;
                     Bite();
-                }
+                }*/
             }
+
+            if (biteOnCooldown)
+                GetComponent<DragonControls>().Frozen = true;
+            else
+                GetComponent<DragonControls>().Frozen = false;
         }
 
         private void Bite()

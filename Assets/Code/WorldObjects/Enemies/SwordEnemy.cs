@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using WorldObjects.Players;
 
-namespace WorldObjects
+namespace WorldObjects.Enemies
 {
-    public class AggressiveEnemy : Enemy
+    public class SwordEnemy : Enemy
     {
         [SerializeField]
-        private float attackDamage = 10f;
+        protected float attackDamage = 10f;
         [SerializeField]
-        private float attackChargeTime = 1f;
+        protected float attackChargeTime = 1f;
 
         [SerializeField]
         private AudioClip attackSound;
@@ -24,17 +25,11 @@ namespace WorldObjects
             sound = new CreatureSound(GetComponent<AudioSource>());
         }
 
-        protected override void Move()
-        {
-            transform.position = Vector3.MoveTowards(transform.position, Player.Player.Current.transform.position, 0.1f);
-            CreatureUtils.LookAtPosition(transform, Player.Player.Current.transform.position, Vector3.forward);
-        }
-
         protected override void Tick()
         {
             base.Tick();
 
-            if (Weapon.CollidingCreatures.Contains(Player.Player.Current.gameObject))
+            if (Weapon.CollidingCreatures.Contains(Player.Current.gameObject))
             {
                 if (!chargingAttack)
                 {

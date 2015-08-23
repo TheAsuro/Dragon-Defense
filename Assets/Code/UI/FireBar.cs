@@ -7,7 +7,7 @@ namespace UI
     {
         void Update()
         {
-            Value = WorldObjects.Player.Player.Current.FireCharge / WorldObjects.Player.Player.Current.MaxFireCharge;
+            Value = WorldObjects.Players.Player.Current.FireCharge / WorldObjects.Players.Player.Current.MaxFireCharge;
         }
     }
 }

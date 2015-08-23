@@ -8,7 +8,7 @@ namespace UI
     {
         void Update()
         {
-            Value = WorldObjects.Player.Player.Current.Health / 100f;
+            Value = WorldObjects.Players.Player.Current.Health / 100f;
         }
     }
 }
