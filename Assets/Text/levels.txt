@@ -1,0 +1,7 @@
+-
+#Separated with minus for each level and a new line for each enemy group
+#Group layout: "<Time [float]>|<Count [int]>|<Type [string]>"
+
+3|1|AttackEnemy1
+5|2|AttackEnemy1
+10|5|AttackEnemy1

@@ -37,7 +37,6 @@ namespace WorldObjects.Players
         private float biteCooldownStart;
         private bool biteOnCooldown = false;
         public bool BiteOnCooldown { get { return biteOnCooldown; } }
-        private bool biteBuffered = false;
 
         private CreatureSound sound;
         private PlayerBite BiteObj { get { return transform.GetChild(0).GetComponent<PlayerBite>(); } }
@@ -73,26 +72,14 @@ namespace WorldObjects.Players
         {
             if (Input.GetButtonDown("Bite"))
             {
-                /*if (biteOnCooldown)
-                {
-                    biteBuffered = true;
-                }
-                else
-                {*/
-                    biteOnCooldown = true;
-                    biteCooldownStart = Time.time;
-                    Bite();
-                //}
+                biteOnCooldown = true;
+                biteCooldownStart = Time.time;
+                Bite();
             }
 
             if (Time.time >= biteCooldownStart + biteCooldown)
             {
                 biteOnCooldown = false;
-                /*if (biteBuffered)
-                {
-                    biteBuffered = false;
-                    Bite();
-                }*/
             }
 
             if (biteOnCooldown)
