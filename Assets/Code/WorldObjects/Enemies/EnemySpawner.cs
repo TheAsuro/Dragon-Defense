@@ -94,7 +94,21 @@ namespace WorldObjects.Enemies
 
         private void Spawn(GameObject enemy)
         {
-            GameObject.Instantiate(enemy, transform.position, Quaternion.identity);
+            GameInfo.Status.EnemySpawned((GameObject)GameObject.Instantiate(enemy, transform.position, Quaternion.identity));
+        }
+
+        public bool FinishedLevel
+        {
+            get
+            {
+                float lastSpawnTime = 0f;
+
+                foreach (float spawnTime in spawnData[level].Keys)
+                    if (spawnTime > lastSpawnTime)
+                        lastSpawnTime = spawnTime;
+
+                return Time.time - startTime >= lastSpawnTime;
+            }
         }
     }
 

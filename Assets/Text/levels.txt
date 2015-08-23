@@ -1,7 +1,12 @@
--
-#Separated with minus for each level and a new line for each enemy group
+#Separated with "-" for each level and a new line for each enemy group
 #Group layout: "<Time [float]>|<Count [int]>|<Type [string]>"
+#Don't spawn multiple groups at the same time
 
 3|1|AttackEnemy1
 5|2|AttackEnemy1
 10|5|AttackEnemy1
+-
+3|2|AttackEnemy1
+3.1|2|FlankEnemy1a
+3.2|2|FlankEnemy1b
+5|5|AttackEnemy1

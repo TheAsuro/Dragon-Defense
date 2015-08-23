@@ -15,6 +15,12 @@ namespace WorldObjects.Enemies
             Move();
         }
 
+        protected override void Die()
+        {
+            GameInfo.Status.EnemiyDied(gameObject);
+            base.Die();
+        }
+
         protected bool WalkTo(Vector3 target)
         {
             transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed);
