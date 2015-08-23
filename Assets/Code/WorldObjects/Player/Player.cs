@@ -22,8 +22,6 @@ namespace WorldObjects.Player
         [SerializeField]
         private float fireCharge = 100f;
         [SerializeField]
-        private float minRequiredCharge = 30f;
-        [SerializeField]
         private Vector3 fireOffset = new Vector3(0, 1, 0);
         [SerializeField]
         private GameObject firePrefab;
@@ -42,6 +40,8 @@ namespace WorldObjects.Player
         void Start()
         {
             current = this;
+
+            GameInfo.Status.StartPlay();
         }
 
         protected override void Die()

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using WorldObjects;
 
 namespace GameInfo
 {
@@ -13,6 +14,19 @@ namespace GameInfo
     {
         private static State curState = State.Playing;
         public static State CurrentState { get { return curState; } }
+        public static float GameTime { get { return Time.time - startTime; } }
+
+        private static float startTime = float.NaN;
+
+        public static void StartPlay()
+        {
+            startTime = Time.time;
+
+            foreach (EnemySpawner spawner in EnemySpawner.AllSpawners)
+            {
+                spawner.StartSpawning();
+            }
+        }
 
         public static void DeathScreen()
         {
