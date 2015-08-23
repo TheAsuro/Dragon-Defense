@@ -10,6 +10,8 @@ namespace WorldObjects.Player
 
         [SerializeField]
         private float biteDamage = 100f;
+        [SerializeField]
+        private float biteCooldown = 0.33f;
 
         [SerializeField]
         private float maxFireCharge = 100f;
@@ -28,7 +30,11 @@ namespace WorldObjects.Player
 
         private bool firePressCancelled = false;
 
-        PlayerBite Bite { get { return transform.GetChild(0).GetComponent<PlayerBite>(); } }
+        private float biteCooldownStart;
+        private bool biteOnCooldown = false;
+        private bool biteBuffered = false;
+
+        PlayerBite BiteObj { get { return transform.GetChild(0).GetComponent<PlayerBite>(); } }
 
         public float FireCharge { get { return fireCharge; } }
         public float MaxFireCharge { get { return maxFireCharge; } }
@@ -53,12 +59,36 @@ namespace WorldObjects.Player
 
         private void UpdateBite()
         {
-            if (Input.GetButton("Bite"))
+            if (Input.GetButtonDown("Bite"))
             {
-                foreach (GameObject enemy in Bite.CollidingEnemies)
+                if (biteOnCooldown)
                 {
-                    enemy.GetComponent<Enemy>().Damage(biteDamage, DamageType.Bite);
+                    biteBuffered = true;
                 }
+                else
+                {
+                    biteOnCooldown = true;
+                    biteCooldownStart = Time.time;
+                    Bite();
+                }
+            }
+
+            if (Time.time >= biteCooldownStart + biteCooldown)
+            {
+                biteOnCooldown = false;
+                if (biteBuffered)
+                {
+                    biteBuffered = false;
+                    Bite();
+                }
+            }
+        }
+
+        private void Bite()
+        {
+            foreach (GameObject enemy in BiteObj.CollidingEnemies)
+            {
+                enemy.GetComponent<Enemy>().Damage(biteDamage, DamageType.Bite);
             }
         }
 
