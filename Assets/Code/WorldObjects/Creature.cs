@@ -79,4 +79,22 @@ namespace WorldObjects
                 transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, angle);
         }
     }
+
+    public class CreatureSound
+    {
+        private float startVolume;
+        private AudioSource audio;
+
+        public CreatureSound(AudioSource source)
+        {
+            audio = source;
+            startVolume = source.volume;
+        }
+
+        public void PlaySound(AudioClip clip)
+        {
+            audio.volume = startVolume;
+            audio.PlayOneShot(clip);
+        }
+    }
 }

@@ -10,28 +10,26 @@ namespace Utils
 
         void OnTriggerEnter(Collider coll)
         {
-            collidingObjects.Add(coll.gameObject);
+            if (!collidingObjects.Contains(coll.gameObject))
+                collidingObjects.Add(coll.gameObject);
         }
 
         void OnTriggerExit(Collider coll)
         {
             if (collidingObjects.Contains(coll.gameObject))
                 collidingObjects.Remove(coll.gameObject);
-            else
-                print("Wot");
         }
 
         void OnTriggerEnter2D(Collider2D coll)
         {
-            collidingObjects.Add(coll.gameObject);
+            if (!collidingObjects.Contains(coll.gameObject))
+                collidingObjects.Add(coll.gameObject);
         }
 
         void OnTriggerExit2D(Collider2D coll)
         {
             if (collidingObjects.Contains(coll.gameObject))
                 collidingObjects.Remove(coll.gameObject);
-            else
-                print("Wot");
         }
     }
 }

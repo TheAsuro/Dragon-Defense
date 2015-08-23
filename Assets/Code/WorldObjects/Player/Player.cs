@@ -26,13 +26,19 @@ namespace WorldObjects.Player
         [SerializeField]
         private GameObject firePrefab;
 
+        [SerializeField]
+        private AudioClip fireSound;
+        [SerializeField]
+        private AudioClip biteSound;
+
         private bool firePressCancelled = false;
 
         private float biteCooldownStart;
         private bool biteOnCooldown = false;
         private bool biteBuffered = false;
 
-        PlayerBite BiteObj { get { return transform.GetChild(0).GetComponent<PlayerBite>(); } }
+        private CreatureSound sound;
+        private PlayerBite BiteObj { get { return transform.GetChild(0).GetComponent<PlayerBite>(); } }
 
         public float FireCharge { get { return fireCharge; } }
         public float MaxFireCharge { get { return maxFireCharge; } }
@@ -40,6 +46,7 @@ namespace WorldObjects.Player
         void Start()
         {
             current = this;
+            sound = new CreatureSound(GetComponent<AudioSource>());
 
             GameInfo.Status.StartPlay();
         }
@@ -86,6 +93,7 @@ namespace WorldObjects.Player
 
         private void Bite()
         {
+            sound.PlaySound(biteSound);
             foreach (GameObject enemy in BiteObj.CollidingEnemies)
             {
                 enemy.GetComponent<Enemy>().Damage(biteDamage, DamageType.Bite);
@@ -94,6 +102,11 @@ namespace WorldObjects.Player
 
         private void UpdateFire()
         {
+            if (Input.GetButtonDown("Fire"))
+            {
+                sound.PlaySound(fireSound);
+            }
+
             if (Input.GetButton("Fire") && fireCharge < fireUsePerTick)
             {
                 firePressCancelled = true;
