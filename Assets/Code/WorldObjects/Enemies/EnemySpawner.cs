@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using GameInfo;
 
 namespace WorldObjects.Enemies
 {
@@ -16,9 +17,7 @@ namespace WorldObjects.Enemies
         private TextAsset spawnFile;
 
         private List<Dictionary<float, SpawnInfo>> spawnData = new List<Dictionary<float, SpawnInfo>>();
-        private float startTime;
         private bool spawning;
-        private int level = 0;
 
         void Start()
         {
@@ -26,9 +25,17 @@ namespace WorldObjects.Enemies
             ParseSpawnFile();
         }
 
+        public void Reset()
+        {
+            spawnData.ForEach((data) =>
+            {
+                foreach (SpawnInfo info in data.Values)
+                    info.spawned = false;
+            });
+        }
+
         public void StartSpawning()
         {
-            startTime = Time.time;
             spawning = true;
         }
 
@@ -68,9 +75,9 @@ namespace WorldObjects.Enemies
         {
             if (spawning)
             {
-                foreach (KeyValuePair<float, SpawnInfo> pair in spawnData[level])
+                foreach (KeyValuePair<float, SpawnInfo> pair in spawnData[Status.Level])
                 {
-                    if (Time.time - startTime >= pair.Key && !pair.Value.spawned)
+                    if (Status.GameTime >= pair.Key && !pair.Value.spawned)
                     {
                         pair.Value.SetSpawned(true);
                         for (int i = 0; i < pair.Value.count; i++)
@@ -103,11 +110,11 @@ namespace WorldObjects.Enemies
             {
                 float lastSpawnTime = 0f;
 
-                foreach (float spawnTime in spawnData[level].Keys)
+                foreach (float spawnTime in spawnData[Status.Level].Keys)
                     if (spawnTime > lastSpawnTime)
                         lastSpawnTime = spawnTime;
 
-                return Time.time - startTime >= lastSpawnTime;
+                return Status.GameTime >= lastSpawnTime;
             }
         }
     }

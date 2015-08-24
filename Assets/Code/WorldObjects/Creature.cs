@@ -41,7 +41,7 @@ namespace WorldObjects
 
         protected virtual void Tick() { }
 
-        protected virtual void Die()
+        public virtual void Die()
         {
             GameObject.Destroy(gameObject);
         }

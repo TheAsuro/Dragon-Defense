@@ -15,7 +15,7 @@ namespace WorldObjects.Enemies
             Move();
         }
 
-        protected override void Die()
+        public override void Die()
         {
             GameInfo.Status.EnemiyDied(gameObject);
             base.Die();

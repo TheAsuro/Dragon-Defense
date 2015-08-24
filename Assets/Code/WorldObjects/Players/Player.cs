@@ -44,15 +44,21 @@ namespace WorldObjects.Players
         public float FireCharge { get { return fireCharge; } }
         public float MaxFireCharge { get { return maxFireCharge; } }
 
+        private float defaultFireCharge;
+        private float defaultHealth;
+
         void Start()
         {
             current = this;
             sound = new CreatureSound(GetComponent<AudioSource>());
 
+            defaultFireCharge = fireCharge;
+            defaultHealth = health;
+
             GameInfo.Status.StartPlay();
         }
 
-        protected override void Die()
+        public override void Die()
         {
             GameInfo.Status.DeathScreen();
         }
@@ -66,6 +72,12 @@ namespace WorldObjects.Players
         {
             UpdateBite();
             UpdateFire();
+        }
+
+        public void Reset()
+        {
+            fireCharge = defaultFireCharge;
+            health = defaultHealth;
         }
 
         private void UpdateBite()
