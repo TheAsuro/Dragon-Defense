@@ -10,6 +10,9 @@ namespace WorldObjects.Enemies
         private static List<EnemySpawner> allSpawners = new List<EnemySpawner>();
         public static List<EnemySpawner> AllSpawners { get { return new List<EnemySpawner>(allSpawners); } }
 
+        private static int maxLevelNumber = 0;
+        public static int MaxLevelNumber { get { return maxLevelNumber; } }
+
         [SerializeField]
         private List<GameObject> enemyObjects = new List<GameObject>();
 
@@ -37,6 +40,11 @@ namespace WorldObjects.Enemies
         public void StartSpawning()
         {
             spawning = true;
+        }
+
+        public void StopSpawning()
+        {
+            spawning = false;
         }
 
         private void ParseSpawnFile()
@@ -69,6 +77,9 @@ namespace WorldObjects.Enemies
 
             if (levelData.Count > 0)
                 spawnData.Add(levelData);
+
+            if (maxLevelNumber < spawnData.Count)
+                maxLevelNumber = spawnData.Count;
         }
 
         void Update()

@@ -1,15 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
-using GameInfo;
 
 namespace UI
 {
-    public class LevelButton : ButtonScript
+    public class QuitButton : ButtonScript
     {
         protected override void Click()
         {
-            Status.NextLevel();
+            Application.Quit();
         }
     }
 }

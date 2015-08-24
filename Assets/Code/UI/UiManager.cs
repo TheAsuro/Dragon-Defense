@@ -10,6 +10,7 @@ namespace UI
 
         private GameObject LevelScreen { get { return transform.FindChild("LevelScreen").gameObject; } }
         private GameObject DeathScreen { get { return transform.FindChild("DeathScreen").gameObject; } }
+        private GameObject EndScreen { get { return transform.FindChild("EndScreen").gameObject; } }
 
         void Start()
         {
@@ -26,6 +27,12 @@ namespace UI
         {
             get { return DeathScreen.activeSelf; }
             set { DeathScreen.SetActive(value); }
+        }
+
+        public bool ShowEndScreen
+        {
+            get { return EndScreen.activeSelf; }
+            set { EndScreen.SetActive(value); }
         }
     }
 }

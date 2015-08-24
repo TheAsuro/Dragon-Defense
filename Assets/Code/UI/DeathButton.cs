@@ -5,14 +5,9 @@ using GameInfo;
 
 namespace UI
 {
-    public class DeathButton : MonoBehaviour
+    public class DeathButton : ButtonScript
     {
-        void Start()
-        {
-            GetComponent<Button>().onClick.AddListener(Click);
-        }
-
-        private void Click()
+        protected override void Click()
         {
             Status.StartPlay();
         }

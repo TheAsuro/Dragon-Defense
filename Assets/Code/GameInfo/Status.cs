@@ -17,12 +17,12 @@ namespace GameInfo
 
         public static void StartPlay()
         {
-            ResumeGame();
+            livingEnemies.ForEach((enemy) => enemy.GetComponent<Enemy>().Die());
 
             startTime = Time.time;
             Player.Current.Reset();
 
-            livingEnemies.ForEach((enemy) => enemy.GetComponent<Enemy>().Die());
+            ResumeGame();
 
             foreach (EnemySpawner spawner in EnemySpawner.AllSpawners)
             {
@@ -65,10 +65,22 @@ namespace GameInfo
             UiManager.Manager.ShowDeathScreen = true;
         }
 
+        public static void EndScreen()
+        {
+            PauseGame();
+            UiManager.Manager.ShowLevelScreen = false;
+            UiManager.Manager.ShowEndScreen = true;
+
+            EnemySpawner.AllSpawners.ForEach((spawner) => spawner.StopSpawning());
+        }
+
         public static void NextLevel()
         {
             level++;
-            StartPlay();
+            if (level >= EnemySpawner.MaxLevelNumber)
+                EndScreen();
+            else
+                StartPlay();
         }
 
         private static void PauseGame()
@@ -81,6 +93,7 @@ namespace GameInfo
             Time.timeScale = 1f;
             UiManager.Manager.ShowLevelScreen = false;
             UiManager.Manager.ShowDeathScreen = false;
+            UiManager.Manager.ShowEndScreen = false;
         }
     }
 }
